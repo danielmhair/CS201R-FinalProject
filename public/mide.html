@@ -10,13 +10,17 @@
     <title>Daniel Hair</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-      
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="javascripts/textcomplete.js"></script>
     <script src="javascripts/angular.min.js"></script>
     <script src="javascripts/mide.controller.js"></script>
       
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheets" href="javascripts/textcomplete.css">
     <link rel="stylesheet" href="./stylesheets/ionicons.min.css" />	
     <link rel="stylesheet" href="./stylesheets/app.css">
     <link rel="stylesheet" href="./stylesheets/home.css">
@@ -50,15 +54,37 @@
             <div class="col-md-6 font-weight-300">
                 <h1>Editor</h1>
                 <section class="editor">
-                    <textarea class="form-control" ng-model="html" width="100%" height="100%"></textarea>
-                    <div contenteditable="true" style="border: 2px solid black;">This text area, for some reason is not allowing text to be a model with ng-model for some reason, but its editable</div>
+                    <p>This editor has Bootstrap and jQuery integrated. Feel free to use them!</p>
+                    <div>
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist" id="myTabs">
+                        <li role="presentation" class="active"><a href="#html" aria-controls="html" role="tab" data-toggle="tab">HTML</a></li>
+                        <li role="presentation"><a href="#css" aria-controls="css" role="tab" data-toggle="tab">CSS</a></li>
+                        <li role="presentation"><a href="#js" aria-controls="js" role="tab" data-toggle="tab">Javascript</a></li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active ui-widget" id="html">
+                            <textarea id="html-text" class="form-control" ng-model="html" width="100%" height="700px" ng-change="combineCode()"></textarea>  
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="css">
+                            <textarea id="css-text" class="form-control" ng-model="css" width="100%" height="700px" ng-change="combineCode()"></textarea>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="js">
+                              <textarea id="js-text" class="form-control" ng-model="js" width="100%" height="700px" ng-change="combineCode()"></textarea>
+                        </div>
+                      </div>
+
+                    </div>
+                    
                 </section>
             </div>
             <div class="col-md-6 font-weight-300">
                 <h1>Preview</h1>
-                <section class="preview">
-                    <iframe srcdoc="{{ html | trustEditorAsHTML }}" width="100%" height="700px">
-
+                <section class="preview_html">
+                    <iframe srcdoc="{{ combinedData | trustEditorHTML }}" width="100%" height="700px">
+                        Sorry, we use frames for our IDE, please use a browser that supports iframes.
                     </iframe>
                 </section>
             </div>
@@ -68,9 +94,9 @@
             <h1>Things to Finish for this Project</h1>
             <h2>Priorities</h2>
             <ul style="text-align: left;">
-                <li>Allow tabbing in Editor</li>
-                <li>Color tags one color, properties another, quotes another color</li>
+                
                 <li>When cursor is on a tag, highlight both the opening and closing of that tag to help know where it opens and closes</li>
+                <li>Color tags one color, properties another, quotes another color</li>
                 <li>Autofill tags</li>
                 <li>Allow autocomplete</li>
                 <ul>
@@ -91,6 +117,13 @@
 	  </footer>
 	  <!-- END FOOTER -->
 	</div>
-	<script src="./javascripts/jquery.min.js"></script>
+    <script>
+        $('#myTabs li a').click(function (event) {
+          event.preventDefault()
+          $(this).tab('show');
+        });
+    </script>
+    <script src="./javascripts/tab.js"></script>
+    <script src="./javascripts/autocomplete.js"></script>
   </body>
 </html>

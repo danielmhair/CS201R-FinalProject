@@ -10,3 +10,13 @@ a {
 .padding-5 {
     padding: 5px;
 }
+
+textarea {
+    resize: none;
+    width: 100% !important;
+    height: 500px !important;
+}
+
+.tab-content {
+    padding-top: 20px;
+}
