@@ -124,8 +124,9 @@ var elements = [
 ];
 
 var cssElements = elements;
+
 var cssProperties = [
-    "testing"
+    "color"
 ];
 
 
@@ -159,4 +160,3 @@ $('#css-text').textcomplete([
         }
     }
 ]);
-///$([^{}]+(?=\})/g
